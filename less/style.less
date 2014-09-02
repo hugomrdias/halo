@@ -1,0 +1,112 @@
+@npm-path: "../node_modules";
+@import (inline) "@{npm-path}/normalize.css/normalize.css";
+@import "variables";
+@import "base";
+
+/* Components */
+@import "components/test";
+
+// Header component
+.Header {
+    position:    fixed;
+    top:         0;
+    left:        0;
+    right:       0;
+    z-index:     500;
+    height:      60px;
+    line-height: 60px;
+    padding:     0 20px 0 0;
+    font-size:   1rem;
+    color:       white;
+    background:  @gray0;
+}
+.Header-brand {
+    display: inline-block;
+    padding: 0 20px 0 20px;
+    width: 270px;
+}
+.Header-title {
+    display: inline-block;
+    padding: 0 20px 0 20px;
+}
+.Sidebar {
+    position:    fixed;
+    width:       270px;
+    //left:        -@nav-sidebar-width;
+    top:         60px;
+    bottom:      0;
+    z-index:     400;
+    background: white;
+    box-shadow:  1px 0 2px rgba(0, 0, 0, 0.3);
+    user-select: none;
+    cursor:      pointer;
+    &:before {
+        position: absolute;
+        right:    20px;
+        top:      0;
+        bottom:   0;
+        left:     100%;
+        width:    20px;
+        height:   100%;
+        content:  " ";
+    }
+}
+
+.Content {
+    padding:                    60px+10px 15px 10px 15px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ==|== media queries ======================================================
+   PLACEHOLDER Media Queries for Responsive Design.
+   These override the primary ('mobile first') styles
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 481px) {
+    /* Style adjustments for viewports 480px and over go here */
+}
+
+@media only screen and (min-width: 769px) {
+    /* Style adjustments for viewports 768px and over go here */
+}
+
+@media only screen and (min-width: 1025px) {
+    /* Style adjustments for viewports 1025px and over go here */
+    .Header {
+        position: absolute;
+    }
+
+    .Sidebar {
+        position: absolute;
+        left:     0;
+    }
+
+    .Content {
+        position:                   absolute;
+        top:                        60px;
+        left:                       270px;
+        bottom:                     0;
+        right:                      0;
+        overflow:                   hidden;
+        overflow-y:                 auto;
+        -webkit-overflow-scrolling: touch;
+        padding:                    10px 20px 10px 20px;
+        height:                     auto;
+    }
+}
+
+@media only screen and (min-width: 1281px) {
+    /* Style adjustments for viewports 1281px and over go here */
+}
+
+@media print,
+(-o-min-device-pixel-ratio:      5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution:                 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+@media print {
+    //@import 'halo/components/print';
+}

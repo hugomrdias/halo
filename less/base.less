@@ -1,0 +1,133 @@
+// Variables
+// -------------------
+@base-background: @gray7;
+@base-color: @gray0;
+@base-font: 'RobotoDraft', "Helvetica Neue", Helvetica, Arial, sans-serif;
+@base-font-serif : Georgia, "Times New Roman", Times, serif;
+@base-font-mono : Consolas, Menlo, Monaco, "Courier New", monospace;
+@base-font-size : 16px;
+@base-link-color : @brand-primary;
+@base-link-color-hover : @brand-primary;
+@base-selection-color: fade(@brand-primary, 50%);
+
+/**
+ * A thin layer on top of normalize.css that provides a starting point more
+ * suitable for web applications. Removes the default spacing and border for
+ * appropriate elements.
+ * Only tags selectors are used in this file to build a simple baseline.
+ */
+
+html {
+    height:                      100%;
+    background:                  @base-background;
+    color:                       @base-color;
+    font-size:                   @base-font-size;
+    font-family:                 @base-font;
+    font-weight:                 300;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-font-smoothing:      antialiased;
+}
+
+body {
+    height:     100%;
+    min-height: 100%;
+}
+
+// Normalize Tweaks
+// ---------------------
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+p,
+pre {
+    margin: 0;
+}
+
+button {
+    background: transparent;
+    border:     0;
+    padding:    0;
+}
+
+/**
+ * Work around a Firefox/IE bug where the transparent `button` background
+ * results in a loss of the default `button` focus styles.
+ */
+
+button:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+}
+
+fieldset {
+    border:  0;
+    margin:  0;
+    padding: 0;
+}
+
+iframe {
+    border: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+    margin:     0;
+    padding:    0;
+}
+
+/**
+ * Suppress the focus outline on links that cannot be accessed via keyboard.
+ * This prevents an unwanted focus outline from appearing around elements that
+ * might still respond to pointer events.
+ */
+
+[tabindex="-1"]:focus {
+    outline: none !important;
+}
+
+input[type="search"] {
+    box-sizing         : border-box;
+}
+
+// Holy Grail
+// ------------------------
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+// Links
+// -------------------------
+a {
+    color:           @base-link-color;
+    text-decoration: none;
+    transition:      color ease 300ms;
+}
+
+a:hover,
+a:focus,
+a:active {
+    color:           @base-link-color-hover;
+    text-decoration: underline;
+}
+
+// Selection
+// -------------------------
+::-moz-selection {
+    background:  @base-selection-color;
+    text-shadow: none;
+}
+
+::selection {
+    background:  @base-selection-color;
+    text-shadow: none;
+}
+
