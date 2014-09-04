@@ -26,7 +26,7 @@ var handleError = function(e) {
         message: '<%= error.message %>'
     }).apply(this, args);
 
-    util.log(e.message);
+    util.log(args.message);
 
     // Keep gulp from hanging on this task
     this.emit('end');

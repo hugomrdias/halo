@@ -1,0 +1,110 @@
+---
+layout: page
+title: Grid UI tests
+permalink: /pages/grid/
+---
+<style>
+    .fixture-Box {
+        background: rgb(100, 150, 50);
+        border: 1px solid black;
+        margin-bottom: 10px;
+        min-height: 50px;
+        text-align: center;
+        line-height: 50px;
+        color: white;
+        font-weight: 400;
+    }
+</style>
+<div class="GridContainer GridContainer--fixed">
+    <div class="Grid">
+        <div class="Grid-cell">
+            <div></div>
+        </div>
+
+        <div class="Grid-cell fixture-Box">default</div>
+        <div class="Grid-cell50 fixture-Box">1</div>
+        <div class="Grid-cell50 fixture-Box">2</div>
+
+        <div class="Grid-cell33 fixture-Box">1</div>
+        <div class="Grid-cell33 fixture-Box">2</div>
+        <div class="Grid-cell33 fixture-Box">3</div>
+
+    </div>
+</div>
+<div class="GridContainer">
+    <div class="Grid">
+
+        <div class="Grid-cell fixture-Box">default</div>
+        <div class="Grid-cell50 fixture-Box">1</div>
+        <div class="Grid-cell50 fixture-Box">2</div>
+
+        <div class="Grid-cell33 fixture-Box">1</div>
+        <div class="Grid-cell33 fixture-Box">2</div>
+        <div class="Grid-cell33 fixture-Box">3</div>
+
+    </div>
+
+    <div class="Grid Grid--gutter">
+        <div class="Grid-cell100 fixture-Box">Gutter</div>
+        <div class="Grid-cell50 fixture-Box"></div>
+        <div class="Grid-cell50 fixture-Box">2</div>
+
+        <div class="Grid-cell33 fixture-Box">1</div>
+        <div class="Grid-cell33 fixture-Box">2</div>
+        <div class="Grid-cell33 fixture-Box">3</div>
+
+    </div>
+
+    <div class="Grid Grid--gutter-big">
+        <div class="Grid-cell100 fixture-Box">Gutter Big</div>
+        <div class="Grid-cell50 fixture-Box"></div>
+        <div class="Grid-cell50 fixture-Box">2</div>
+
+        <div class="Grid-cell33 fixture-Box">1</div>
+        <div class="Grid-cell33 fixture-Box">2</div>
+        <div class="Grid-cell33 fixture-Box">3</div>
+
+    </div>
+
+    <div class="Grid Grid--gutter Grid--collapse">
+        <div class="Grid-cell100 fixture-Box">Gutter Collapse</div>
+        <div class="Grid-cell50 fixture-Box">1</div>
+        <div class="Grid-cell50 fixture-Box">2</div>
+
+    </div>
+
+    <div class="Grid Grid--gutter Grid--collapse2">
+        <div class="Grid-cell100 fixture-Box">Gutter Collapse 2</div>
+        <div class="Grid-cell50 fixture-Box">1</div>
+        <div class="Grid-cell50 fixture-Box">2</div>
+
+    </div>
+
+    <div class="Grid Grid--gutter Grid--collapse Custom">
+        <div class="Grid-cell fixture-Box">Custom Responsive Sizing</div>
+        <div class="Grid-cell fixture-Box">1</div>
+        <div class="Grid-cell fixture-Box">2</div>
+        <div class="Grid-cell fixture-Box">3</div>
+        <div class="Grid-cell fixture-Box">4</div>
+        <div class="Grid-cell fixture-Box">5</div>
+        <div class="Grid-cell fixture-Box">6</div>
+    </div>
+
+    <div class="Grid">
+        <div class="Grid-cell fixture-Box">Nested</div>
+        <div class="Grid-cell50">
+            <div class="Grid Grid--gutter">
+                <div class="Grid-cell50 fixture-Box">nested 1</div>
+                <div class="Grid-cell50 fixture-Box">nested 2</div>
+            </div>
+        </div>
+        <div class="Grid-cell50">
+            <div class="Grid Grid--collapse">
+                <div class="Grid-cell33 fixture-Box">nested 1</div>
+                <div class="Grid-cell33 fixture-Box">nested 2</div>
+                <div class="Grid-cell33 fixture-Box">nested 3</div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -5,7 +5,8 @@
 
 /* Components */
 @import "components/test";
-
+@import "utils/size";
+@import "components/grid";
 // Header component
 .Header {
     position:    fixed;
@@ -53,7 +54,7 @@
 }
 
 .Content {
-    padding:                    60px+10px 15px 10px 15px;
+    padding:                    60px+10px 0 10px 0;
     -webkit-overflow-scrolling: touch;
 }
 
@@ -91,7 +92,7 @@
         overflow:                   hidden;
         overflow-y:                 auto;
         -webkit-overflow-scrolling: touch;
-        padding:                    10px 20px 10px 20px;
+        padding:                    10px 0 10px 0;
         height:                     auto;
     }
 }

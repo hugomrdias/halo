@@ -1,0 +1,144 @@
+@GridContainer-width: 100%;
+@GridContainer-fixed-width: 500px;
+@GridContainer-spacing: 15px;
+@Grid-gutter: 2%;
+@Grid-font-size: 1rem;
+
+// Wrapper class to keep content away from the edges of the viewport
+// ----------------------------------
+
+.GridContainer {
+    padding: 0 @GridContainer-spacing;
+}
+.GridContainer--fixed {
+    max-width: @GridContainer-fixed-width;
+    margin:    0 auto;
+}
+
+.cell(@width: 100%, @gutter:@Grid-gutter) {
+    width:       @width - @gutter;
+    margin-left: @gutter;
+}
+
+.cell-all(@gutter:@Grid-gutter) {
+    .Grid-cell5 { .cell(5%, @gutter); }
+    .Grid-cell10 { .cell(10%, @gutter); }
+    .Grid-cell12 { .cell(12.5%, @gutter); }
+    .Grid-cell17 { .cell(16.66%, @gutter); }
+    .Grid-cell20 { .cell(20%, @gutter); }
+    .Grid-cell25 { .cell(25%, @gutter); }
+    .Grid-cell30 { .cell(30%, @gutter); }
+    .Grid-cell33 { .cell(33.33333333%, @gutter); }
+    .Grid-cell40 { .cell(40%, @gutter); }
+    .Grid-cell50 { .cell(50%, @gutter); }
+    .Grid-cell60 { .cell(60%, @gutter); }
+    .Grid-cell67 { .cell(66.67%, @gutter); }
+    .Grid-cell70 { .cell(70%, @gutter); }
+    .Grid-cell75 { .cell(75%, @gutter); }
+    .Grid-cell80 { .cell(80%, @gutter); }
+    .Grid-cell83 { .cell(83.34%, @gutter); }
+    .Grid-cell90 { .cell(90%, @gutter); }
+    .Grid-cell95 { .cell(95%, @gutter); }
+    .Grid-cell100, .Grid-cell { .cell(100%, @gutter); }
+}
+
+.Grid-cell5,
+.Grid-cell10,
+.Grid-cell12,
+.Grid-cell17,
+.Grid-cell20,
+.Grid-cell25,
+.Grid-cell30,
+.Grid-cell33,
+.Grid-cell40,
+.Grid-cell50,
+.Grid-cell60,
+.Grid-cell67,
+.Grid-cell70,
+.Grid-cell75,
+.Grid-cell80,
+.Grid-cell83,
+.Grid-cell90,
+.Grid-cell95,
+.Grid-cell100,
+.Grid-cell {
+    box-sizing:     border-box;
+    display:        inline-block;
+    font-size:      @Grid-font-size;
+    //        letter-spacing : normal;
+    //        text-rendering: auto;
+    padding:        0;
+    text-align:     left;
+    vertical-align: top;
+    //margin:         0;
+    width:          100%;
+}
+
+.Grid {
+    display:    block;
+    font-size:  0;
+    //    letter-spacing : -0.31em;
+    //    text-rendering: optimizespeed;
+    padding:    0;
+    text-align: left;
+    list-style: none;
+    margin:     0;
+    .cell-all(0);
+}
+
+.Grid--gutter {
+    margin-left: -@Grid-gutter;
+    .cell-all(@Grid-gutter)
+}
+
+.Grid--gutter-big {
+    margin-left: -@Grid-gutter*2;
+    .cell-all(@Grid-gutter*2)
+}
+
+.Grid.Grid--collapse {
+    @media only screen and (max-width: 480px) {
+        margin-left:                   0;
+        [class*='Grid-cell'] {
+            display:     block;
+            width:       100%;
+            margin-left: 0;
+        }
+    }
+}
+
+.Grid.Grid--collapse2 {
+    @media only screen and (max-width: 768px) {
+        margin-left:                   0;
+        [class*='Grid-cell'] {
+            display:     block;
+            width:       100%;
+            margin-left: 0;
+        }
+    }
+}
+
+.Custom .Grid-cell {
+    width: 100%;
+    @media only screen and (min-width: 481px) {
+        /* Style adjustments for viewports 480px and over go here */
+        .cell(50%, @Grid-gutter)
+    }
+
+    @media only screen and (min-width: 769px) {
+        /* Style adjustments for viewports 768px and over go here */
+        .cell(33.33333%, @Grid-gutter)
+    }
+
+    @media only screen and (min-width: 1025px) {
+        /* Style adjustments for viewports 1025px and over go here */
+        .cell(25%, @Grid-gutter)
+    }
+
+    @media only screen and (min-width: 1281px) {
+        /* Style adjustments for viewports 1281px and over go here */
+        .cell(20%, @Grid-gutter)
+    }
+}
+
+
