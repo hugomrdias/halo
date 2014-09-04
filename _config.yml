@@ -1,16 +1,13 @@
 # Setup
 title:            Halo
-tagline:          'A Jekyll theme'
-description:      'A brazen two-column <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
+tagline:          'Halo tools'
+description:      'Halo description.'
 
 author:
   name:           'Hugo Dias'
   url:            https://twitter.com/hugomrdias
 
-version:          2.1.0
-
-github:
-  repo:           https://github.com/poole/hyde
+version:          0.0.1
 
 # Config
 
