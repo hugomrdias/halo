@@ -39,7 +39,7 @@ var handleError = function(e) {
  */
 gulp.task('jekyll', function(done) {
     bsync.notify(messages.jekyllBuild);
-    return cp.spawn('jekyll', ["build --baseurl''"], {
+    return cp.spawn('jekyll', ["build"], {
         stdio: 'inherit'
     })
         .on('close', reload)
