@@ -1,7 +1,7 @@
 /*! suit-test v0.1.0 | MIT License | github.com/suitcss */
 
 .Test {
-    background:    #fff;
+    //background:    #fff;
     counter-reset: test-describe;
 }
 
@@ -27,33 +27,42 @@
     background:  #eee;
     color:       #999;
 }
-
+.Test-code,
 .Test-describe,
 .Test-it {
-    background:  #eee;
-    border-left: 5px solid #666;
-    color:       #666;
-    font-family: sans-serif;
-    font-weight: bold;
+    background:  white;
+    border-left: 5px solid @brand-primary;
+//    color:       #666;
+//    font-family: sans-serif;
+//    font-weight: bold;
     margin:      20px 0;
     padding:     0.75em 20px;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 .Test-describe {
     font-size: 1.5em;
+    font-weight: 600;
     margin:    0 0 20px;
 }
 
 .Test-describe:before,
 .Test-it:before {
-    color:          #999;
+//    color:          #999;
+    font-weight: 600;
+    color:          @red;
     display:        inline-block;
     margin-right:   10px;
     min-width:      30px;
     text-transform: uppercase;
 }
 .Test-run {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
+}
+
+.Test-code {
+    margin: 0 0 40px 0;
 }
 /* Custom helpers */
 

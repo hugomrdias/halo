@@ -74,6 +74,21 @@
     width:          100%;
 }
 
+/**
+ * Modifier: horizontally center one unit
+ * Set a specific unit to be horizontally centered. Doesn't affect
+ * any other units. Can still contain a child `Grid` object.
+ */
+
+.Grid-cell--center {
+    display: block;
+    margin: 0 auto!important;
+}
+
+
+/**
+ * All content must be contained within child `Grid-cell` elements.
+ */
 .Grid {
     display:    block;
     font-size:  0;
@@ -85,7 +100,37 @@
     margin:     0;
     .cell-all(0);
 }
+/**
+ * Modifier: center align all grid cells
+ */
 
+.Grid--alignCenter {
+    text-align: center;
+}
+
+/**
+ * Modifier: right align all grid cells
+ */
+
+.Grid--alignRight {
+    text-align: right;
+}
+
+/**
+ * Modifier: middle-align grid cells
+ */
+
+.Grid--alignMiddle > [class*='Grid-cell'] {
+    vertical-align: middle;
+}
+
+/**
+ * Modifier: bottom-align grid cells
+ */
+
+.Grid--alignBottom > [class*='Grid-cell'] {
+    vertical-align: bottom;
+}
 .Grid--gutter {
     margin-left: -@Grid-gutter;
     .cell-all(@Grid-gutter)

@@ -1,14 +1,16 @@
 // Variables
 // -------------------
 @base-background: @gray7;
-@base-color: @gray0;
+@base-color: @gray2;
 @base-font: 'RobotoDraft', "Helvetica Neue", Helvetica, Arial, sans-serif;
 @base-font-serif : Georgia, "Times New Roman", Times, serif;
-@base-font-mono : Consolas, Menlo, Monaco, "Courier New", monospace;
+@base-font-mono : 'Source Code Pro', Inconsolata, Consolas, Menlo, Monaco, "Courier New", monospace;
 @base-font-size : 16px;
+@base-line-height: 20px;
 @base-link-color : @brand-primary;
 @base-link-color-hover : @brand-primary;
 @base-selection-color: fade(@brand-primary, 50%);
+@base-radius: @radius;
 
 /**
  * A thin layer on top of normalize.css that provides a starting point more
@@ -95,7 +97,7 @@ ul {
 }
 
 input[type="search"] {
-    box-sizing         : border-box;
+    box-sizing: border-box;
 }
 
 // Holy Grail
@@ -130,4 +132,45 @@ a:active {
     background:  @base-selection-color;
     text-shadow: none;
 }
+
+abbr[title] {
+    cursor: help;
+}
+
+address {
+    font-style: normal;
+}
+
+mark {
+    background: @base-selection-color;
+    color:      @base-color;
+}
+
+code,
+kbd,
+pre,
+samp {
+    font-family: @base-font-mono;
+    font-size:   1rem * 0.85;
+}
+
+code {
+    margin:           0 2px;
+    padding:          1px 5px;
+    border:           1px solid #ddd;
+    background-color: #f8f8f8;
+    border-radius:    @radius;
+//    white-space:      nowrap;
+    vertical-align:   middle;
+}
+
+pre {
+    overflow: hidden;
+    code {
+        overflow: auto;
+        display:     block;
+    }
+}
+
+blockquote { font-style: italic }
 
