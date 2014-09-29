@@ -1,0 +1,111 @@
+/* ===============================================
+                Nav component
+   ===============================================*/
+
+//config
+@Header-height: 60px;
+@Header-height-large: 60px;
+@Nav-sidebar-width: 270px;
+.u-enableGPU {
+    backface-visibility: hidden;
+    perspective:         1000;
+    transform:           translate3d(0, 0, 0);
+}
+
+.Header {
+    //.u-enableGPU;
+    position:    fixed;
+    top:         0;
+    left:        0;
+    right:       0;
+    z-index:     500;
+    height:      @Header-height;
+    line-height: @Header-height;
+    padding:     0 20px 0 0;
+    font-size:   1rem;
+    background:  @gray0;
+
+    @media only screen and (min-width: 1025px) {
+        position:    absolute;
+        height:      @Header-height-large;
+        line-height: @Header-height-large;
+    }
+    .Header-brand {
+        display: inline-block;
+        padding: 0 20px 0 20px;
+        width:   auto;
+        @media only screen and (min-width: 1025px) {
+            width: @Nav-sidebar-width;
+        }
+    }
+    .Header-title {
+        display: inline-block;
+        padding: 0 20px 0 20px;
+    }
+}
+
+.Content {
+    position:                   absolute;
+    top:                        @Header-height-large;
+    left:                       0;
+    bottom:                     0;
+    right:                      0;
+    overflow:                   hidden;
+    overflow-y:                 auto;
+    -webkit-overflow-scrolling: touch;
+//    user-select:                none;
+
+    @media only screen and (min-width: 1025px) {
+        left:        @Nav-sidebar-width;
+    }
+}
+
+.Sidebar {
+    //.u-enableGPU;
+    position:    fixed;
+    width:       @Nav-sidebar-width;
+    left:        -@Nav-sidebar-width;
+    top:         @Header-height;
+    bottom:      0;
+    z-index:     400;
+    user-select: none;
+    background:  white;
+
+    //    box-shadow:          1px 0 2px rgba(0, 0, 0, 0.3);
+    &:before {
+        cursor:   pointer;
+        position: absolute;
+        right:    20px;
+        top:      0;
+        bottom:   0;
+        left:     100%;
+        width:    20px;
+        height:   100%;
+        content:  " ";
+    }
+
+    @media only screen and (min-width: 1025px) {
+        position: absolute;
+        left:     0;
+        top:      @Header-height-large;
+    }
+}
+
+
+.Sidebar-overlay {
+    .u-enableGPU;
+    position:         fixed;
+    top:              0;
+    left:             0;
+    right:            0;
+    bottom:           0;
+    height:           100%;
+    width:            100%;
+    z-index:          399;
+    overflow:         hidden;
+    pointer-events:   none;
+    user-select:      none;
+    opacity:          0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+

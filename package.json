@@ -30,6 +30,7 @@
     "run-sequence": "^0.3.6"
   },
   "dependencies": {
-    "normalize.css": "^3.0.1"
+    "normalize.css": "^3.0.1",
+    "suitcss-utils": "^0.10.0"
   }
 }

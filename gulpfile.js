@@ -91,7 +91,7 @@ gulp.task('watch', function() {
         util.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 
-    var jekyll = gulp.watch(['**/*.{html,xml,yml,md}', '!_site/**'], ['jekyll']);
+    var jekyll = gulp.watch(['**/*.{html,xml,yml,md,js}', '!_site/**'], ['jekyll']);
     jekyll.on('change', function(event) {
         util.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });

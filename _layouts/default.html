@@ -5,12 +5,14 @@
 
   <body>
     {% include header.html %}
-    <!--{% include sidebar.html %}-->
-
+    {% include sidebar.html %}
+    <div class="Sidebar-overlay"></div>
     <div class="Content">
         {{ content }}
     </div>
 
+    <script type="application/javascript" src="{{ "/js/utils.js" | prepend: site.baseurl}}"></script>
+    <script type="application/javascript" src="{{ "/js/nav.js" | prepend: site.baseurl}}"></script>
   </body>
 
 </html>

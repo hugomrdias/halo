@@ -160,15 +160,20 @@ code {
     border:           1px solid #ddd;
     background-color: #f8f8f8;
     border-radius:    @radius;
-//    white-space:      nowrap;
+    white-space:      nowrap;
     vertical-align:   middle;
 }
 
 pre {
-    overflow: hidden;
+    overflow: auto;
+    display:  block;
     code {
-        overflow: auto;
-        display:     block;
+        margin:        0;
+        padding:       0;
+        background:    transparent;
+        border-radius: 0;
+        border:        0;
+        white-space:   pre;
     }
 }
 

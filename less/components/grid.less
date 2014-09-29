@@ -131,6 +131,7 @@
 .Grid--alignBottom > [class*='Grid-cell'] {
     vertical-align: bottom;
 }
+
 .Grid--gutter {
     margin-left: -@Grid-gutter;
     .cell-all(@Grid-gutter)
@@ -166,22 +167,15 @@
 .Custom .Grid-cell {
     width: 100%;
     @media only screen and (min-width: 481px) {
-        /* Style adjustments for viewports 480px and over go here */
         .cell(50%, @Grid-gutter)
     }
-
     @media only screen and (min-width: 769px) {
-        /* Style adjustments for viewports 768px and over go here */
         .cell(33.33333%, @Grid-gutter)
     }
-
     @media only screen and (min-width: 1025px) {
-        /* Style adjustments for viewports 1025px and over go here */
         .cell(25%, @Grid-gutter)
     }
-
     @media only screen and (min-width: 1281px) {
-        /* Style adjustments for viewports 1281px and over go here */
         .cell(20%, @Grid-gutter)
     }
 }

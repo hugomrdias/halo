@@ -1,63 +1,34 @@
 @npm-path: "../node_modules";
+@suit-utils: "../node_modules/suitcss-utils/node_modules";
+
 @import (inline) "@{npm-path}/normalize.css/normalize.css";
+
+// SUIT CSS utilities
+// suit css offset util not include for now
+@import (inline) "@{suit-utils}/suitcss-utils-align/lib/align.css";
+@import (inline) "@{suit-utils}/suitcss-utils-display/lib/display.css";
+@import (inline) "@{suit-utils}/suitcss-utils-layout/lib/layout.css";
+@import (inline) "@{suit-utils}/suitcss-utils-link/lib/link.css";
+@import (inline) "@{suit-utils}/suitcss-utils-position/lib/position.css";
+@import (inline) "@{suit-utils}/suitcss-utils-size/lib/size.css";
+@import (inline) "@{suit-utils}/suitcss-utils-text/lib/text.css";
+
 @import "variables";
 @import "base";
 
 /* Components */
 @import "components/test";
-@import "components/syntax";
-@import "utils/size";
+@import "components/syntax-dark";
 @import "components/grid";
-// Header component
-.Header {
-    position:    fixed;
-    top:         0;
-    left:        0;
-    right:       0;
-    z-index:     500;
-    height:      60px;
-    line-height: 60px;
-    padding:     0 20px 0 0;
-    font-size:   1rem;
-    color:       white;
-    background:  @gray0;
-}
-.Header-brand {
-    display: inline-block;
-    padding: 0 20px 0 20px;
-    width: 270px;
-}
-.Header-title {
-    display: inline-block;
-    padding: 0 20px 0 20px;
-}
-.Sidebar {
-    position:    fixed;
-    width:       270px;
-    //left:        -@nav-sidebar-width;
-    top:         60px;
-    bottom:      0;
-    z-index:     400;
-    background: white;
-    box-shadow:  1px 0 2px rgba(0, 0, 0, 0.3);
-    user-select: none;
-    cursor:      pointer;
-    &:before {
-        position: absolute;
-        right:    20px;
-        top:      0;
-        bottom:   0;
-        left:     100%;
-        width:    20px;
-        height:   100%;
-        content:  " ";
-    }
+@import "components/nav";
+
+
+.Sidebar ul > li > a {
+    display: block;
+    line-height: 50px;
+    padding: 0 10px;
 }
 
-.Content {
-    padding:                    60px+10px 0 10px 0;
-    -webkit-overflow-scrolling: touch;
-}
 
 /* ==|== media queries ======================================================
    PLACEHOLDER Media Queries for Responsive Design.
@@ -75,27 +46,7 @@
 
 @media only screen and (min-width: 1025px) {
     /* Style adjustments for viewports 1025px and over go here */
-    .Header {
-        position: absolute;
-    }
 
-    .Sidebar {
-        position: absolute;
-        left:     0;
-    }
-
-    .Content {
-        position:                   absolute;
-        top:                        60px;
-        left:                       270px;
-        bottom:                     0;
-        right:                      0;
-        overflow:                   hidden;
-        overflow-y:                 auto;
-        -webkit-overflow-scrolling: touch;
-        padding:                    10px 0 10px 0;
-        height:                     auto;
-    }
 }
 
 @media only screen and (min-width: 1281px) {
@@ -103,9 +54,9 @@
 }
 
 @media print,
-(-o-min-device-pixel-ratio:      5/4),
+(-o-min-device-pixel-ratio: 5/4),
 (-webkit-min-device-pixel-ratio: 1.25),
-(min-resolution:                 120dpi) {
+(min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
 
