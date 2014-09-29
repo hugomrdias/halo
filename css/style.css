@@ -1814,7 +1814,7 @@ blockquote {
   }
 }
 .Sidebar {
-  position: fixed;
+  position: absolute;
   width: 270px;
   left: -270px;
   top: 60px;
@@ -1829,12 +1829,10 @@ blockquote {
 .Sidebar:before {
   cursor: pointer;
   position: absolute;
-  right: 20px;
   top: 0;
-  bottom: 0;
   left: 100%;
+  bottom: 0;
   width: 20px;
-  height: 100%;
   content: " ";
 }
 @media only screen and (min-width: 1025px) {
@@ -1843,6 +1841,13 @@ blockquote {
     left: 0;
     top: 60px;
   }
+}
+.Sidebar-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .Sidebar-overlay {
   -webkit-backface-visibility: hidden;
