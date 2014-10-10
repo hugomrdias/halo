@@ -1,7 +1,12 @@
-<nav class="Sidebar">
-    <div class="Sidebar-container">
+<nav class="Sidebar halo-Sidebar--scroller">
 
         <ul>
+            <li>
+        <h1 class="Sidebar-header">
+            <a href="{{ site.baseurl }}/">{{ site.title }}</a>
+        </h1>
+
+            </li>
             <li><a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
             <li><a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
             <li><a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
@@ -16,6 +21,7 @@
             <li><a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
             <li><a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
             <li><a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}/">Home</a></li>
+
             {% assign pages_list = site.pages %}
             {% for node in pages_list %}
                 {% if node.title != null %}
@@ -24,16 +30,18 @@
             </li>
                 {% endif %}
             {% endfor %}
+
+            <li>
+                <div>
+                    <p><a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a></p>
+                    <p><a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a></p>
+                    <p><span class="sidebar-nav-item">Currently v{{ site.version }}</span></p>
+
+                    <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
+
+                </div>
+            </li>
         </ul>
 
-        <div>
-            <p><a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a></p>
-            <p><a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a></p>
-            <p><span class="sidebar-nav-item">Currently v{{ site.version }}</span></p>
-
-            <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
-
-        </div>
-    </div>
 </nav>
 

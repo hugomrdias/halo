@@ -1,21 +1,39 @@
-(function (window, document, m, enquire, u) {
-    "use strict";
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define(['halo-utils'], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory(require('./halo-utils'));
+    } else {
+        root.HaloSidebar = factory(root.HaloUtils);
+    }
+}(this, function (u) {
 
-    var html = document.documentElement,
+    var window = this,
+        document = window.document,
+        html = document.documentElement,
         body = document.body;
 
     function Nav(options) {
         this.options = {
+            button            : document.querySelector('.Header-title'),
             sidebar           : document.querySelector('.Sidebar'),
-            overlay           : document.querySelector('.Sidebar-overlay'),
-            button            : document.querySelector('.Header-brand'),
             content           : document.querySelector('.Content'),
             class             : 'is-openNav',
             mq                : "screen and (max-width: 1025px)",
-            transitionDuration: 300
+            transitionDuration: 400,
+            easing            : 'ease'//'cubic-bezier(0.1, 0.57, 0.1, 1)'
         };
+
         u.extend(this.options, options);
-        this.navWidth = this.options.sidebar.offsetWidth;
+
+        this.options.overlay = document.createElement('div');
+        this.options.overlay.classList.add('halo-Sidebar-overlay');
+        body.appendChild(this.options.overlay);
+        this.options.content.classList.add('halo-Sidebar-content');
+        this.options.sidebar.classList.add('halo-Sidebar');
+
+        this.navWidth = parseInt(window.getComputedStyle(this.options.sidebar).getPropertyValue('width').replace('px',
+            ''), 10);
         this.navStyle = this.options.sidebar.style;
         this.overlayStyle = this.options.overlay.style;
         this.isOpen = false;
@@ -29,38 +47,43 @@
         this.deltaXAbs = 0;
         this.deltaYAbs = 0;
         this.x = 0;
-        this.y = 0;
         this.scrolling = false;
         this.dragging = false;
         this.initiated = 0;
-        this.scrollTop = 0;
-        this.rafRequest = null;
         this.isClick = true;
 
-        //events
-        //enquire.register(this.options.mq, {
-        //    match  : this.events.bind(this),
-        //    unmatch: this.events.bind(this, true)
-        //});
+        this.mq();
 
-        var mql = window.matchMedia(this.options.mq);
-
-        if (mql.matches) {
-            this.events();
-        } else {
-            this.events(true);
-        }
-
-        mql.addListener(function (m) {
-            if (m.matches) {
-                this.events();
-            } else {
-                this.events(true);
-            }
-        }.bind(this));
     }
 
     Nav.prototype = {
+        mq: function () {
+            var mql = window.matchMedia(this.options.mq);
+
+            if (mql.matches) {
+                this.events();
+                this.isOpen = false;
+                html.classList.remove(this.options.class);
+            } else {
+                this.events(true);
+                this.clean();
+                this.isOpen = true;
+                html.classList.add(this.options.class);
+            }
+
+            mql.addListener(function (m) {
+                if (m.matches) {
+                    this.events();
+                    this.isOpen = false;
+                    html.classList.remove(this.options.class);
+                } else {
+                    this.events(true);
+                    this.clean();
+                    this.isOpen = true;
+                    html.classList.add(this.options.class);
+                }
+            }.bind(this));
+        },
 
         close: function () {
             this.isOpen = false;
@@ -105,6 +128,18 @@
             }
         },
 
+        clean: function () {
+            this.navStyle.left = '';
+            this.navStyle[u.style.transform] = '';
+            this.navStyle[u.style.transitionDuration] = '';
+            this.navStyle[u.style.transitionTimingFunction] = '';
+
+            this.overlayStyle.opacity = '';
+            this.overlayStyle.pointerEvents = '';
+            this.overlayStyle[u.style.transitionDuration] = '';
+            this.overlayStyle[u.style.transitionTimingFunction] = '';
+        },
+
         onTransitionEnd: function (e) {
             if (e.currentTarget === this.options.sidebar) {
                 this.transition(0, 0);
@@ -138,13 +173,10 @@
             this.touchStartX = touches.pageX;
             this.touchStartY = touches.pageY;
             this.touchX = touches.pageX;
-
-            console.log('start', touches.pageX, touches.pageY, this.initiated);
         },
 
         onTouchMove: function (e) {
             if (u.eventType[e.type] !== this.initiated) {
-                //console.log('diferent event type ignore');
                 return;
             }
             var touches = e.touches ? e.touches[0] : e,
@@ -156,7 +188,6 @@
             this.scrolling = this.initiated !== 2 && this.deltaYAbs > this.deltaXAbs;
 
             if (this.scrolling && !this.dragging) {
-                console.log('scrolling move');
                 return;
             }
             // 1 to 1 movement
@@ -170,14 +201,14 @@
                     this.translate(newX, 0);
                     this.dragging = true;
                     this.isClick = false;
+                    e.preventDefault();
+                    //e.stopPropagation();
                 }
+
             }
-            e.preventDefault();
-            e.stopPropagation();
         },
 
         onTouchEnd: function (e) {
-            console.log('touchend: dragging - ' + this.dragging + ' click - ' + this.isClick);
 
             // sync event types
             if (u.eventType[e.type] !== this.initiated) {
@@ -189,7 +220,6 @@
 
             // Scrolling
             if (this.scrolling && !this.dragging) {
-                console.log('scrolling end');
                 this.scrolling = false;
                 return;
             }
@@ -207,22 +237,21 @@
                 } else if (this.x <= (this.navWidth / 2)) {
                     this.close();
                 }
+                this.dragging = false;
             } else if (this.isClick) {
-                console.log('click emulated');
                 u.click(e);
                 if (currentTarget != this.options.sidebar && !currentTarget.classList.contains('.notoggle')) {
                     this.toggle();
                 }
             }
-            e.preventDefault();
-            e.stopPropagation();
-            this.dragging = false;
+            //e.preventDefault();
+            //e.stopPropagation();
             this.initiated = 0;
         },
 
         transition: function (time, easing) {
             time = time || 0;
-            easing = easing || 'cubic-bezier(0.1, 0.57, 0.1, 1)';
+            easing = easing || this.options.easing;
             if (this.momentum) {
                 time = this.momentum;
                 this.momentum = false;
@@ -236,10 +265,9 @@
 
         },
 
-        translate: function (x, y) {
-            this.navStyle[u.style.transform] = 'translate3d(' + x + 'px, ' + y + 'px, 0)';
+        translate: function (x) {
+            this.navStyle[u.style.transform] = 'translate3d(' + x + 'px, 0, 0)';
             this.x = x;
-            this.y = y;
         },
 
         handleEvent: function (e) {
@@ -260,12 +288,14 @@
                         this.onTouchStart(e);
                     }
                     if (e.currentTarget === this.options.button || e.currentTarget === this.options.overlay) {
+                        console.log('fast click');
                         e.stopPropagation();
                         e.preventDefault();
                         this.toggle();
                     }
                     break;
                 case "click":
+                    console.log('click');
                     e.stopPropagation();
                     e.preventDefault();
                     this.toggle();
@@ -285,24 +315,25 @@
                     break;
             }
         },
-        block      : function (e) {
+
+        block: function (e) {
             if (!e._constructed) {
                 e.preventDefault();
                 e.stopPropagation();
             }
         },
-        events     : function (remove) {
-            var type = remove ? "removeEventListener" : "addEventListener";
 
-            this.options.overlay[type](u.events.fastClick, this);
-            this.options.button[type](u.events.fastClick, this);
+        events: function (remove) {
+            var type = remove ? "removeEventListener" : "addEventListener";
 
             this.options.sidebar[type](u.events.transitionEnd, this);
             this.options.sidebar[type]("click", this.block);
 
             if (u.support.hasTouch) {
                 console.log('register touch');
-                // block click if we are using touchstart
+                this.options.button[type]("touchstart", this);
+                this.options.overlay[type]("touchstart", this);
+
                 this.options.button[type]("click", this.block);
                 this.options.overlay[type]("click", this.block);
 
@@ -310,10 +341,11 @@
                 this.options.sidebar[type]("touchmove", this);
                 this.options.sidebar[type]("touchcancel", this);
                 this.options.sidebar[type]("touchend", this);
-            }
-
-            if (u.support.hasPointer || u.support.hasMSPointer) {
+            } else if (u.support.hasPointer || u.support.hasMSPointer) {
                 console.log('register pointer');
+                this.options.overlay[type]("click", this);
+                this.options.button[type]("click", this);
+
                 if (u.support.hasPointer) {
                     this.options.sidebar[type]("pointerdown", this);
                     this.options.sidebar[type]("pointermove", this);
@@ -327,6 +359,9 @@
                 }
             } else {
                 console.log('register mouse');
+                this.options.overlay[type]("click", this);
+                this.options.button[type]("click", this);
+
                 this.options.sidebar[type]("mousedown", this);
                 this.options.sidebar[type]("mousemove", this);
                 this.options.sidebar[type]("mousecancel", this);
@@ -335,8 +370,5 @@
         }
     };
 
-    // auto setup nav
-
-    window.nav = new Nav();
-
-})(window, window.document, window.Modernizr, window.enquire, window.HaloUtils);
+    return Nav;
+}));

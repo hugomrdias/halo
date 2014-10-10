@@ -1,8 +1,21 @@
-(function (window, document, m) {
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        define([], factory);
+    } else if (typeof exports === 'object') {
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.HaloUtils = factory();
+    }
+}(this, function () {
+
     "use strict";
-    if (!m) {
+    if (!window.Modernizr) {
         throw new Error('Modernizr not available');
     }
+    var document = window.document,
+        m = window.Modernizr;
+
 
     function extend(target, obj) {
         for (var i in obj) {
@@ -127,7 +140,6 @@
         }
     };
 
-    window.HaloUtils = utils;
-})
-(window, window.document, window.Modernizr);
+    return utils;
+}));
 

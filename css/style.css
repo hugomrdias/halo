@@ -1765,91 +1765,41 @@ blockquote {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
-.Header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 500;
-  height: 60px;
-  line-height: 60px;
-  padding: 0 20px 0 0;
-  font-size: 1rem;
-  background: #2b303b;
-}
-@media only screen and (min-width: 1025px) {
-  .Header {
-    position: absolute;
-    height: 60px;
-    line-height: 60px;
-  }
-}
-.Header .Header-brand {
-  display: inline-block;
-  padding: 0 20px 0 20px;
-  width: auto;
-}
-@media only screen and (min-width: 1025px) {
-  .Header .Header-brand {
-    width: 270px;
-  }
-}
-.Header .Header-title {
-  display: inline-block;
-  padding: 0 20px 0 20px;
-}
-.Content {
-  position: absolute;
-  top: 60px;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  overflow: hidden;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-@media only screen and (min-width: 1025px) {
-  .Content {
-    left: 270px;
-  }
-}
-.Sidebar {
-  position: absolute;
-  width: 270px;
-  left: -270px;
-  top: 60px;
-  bottom: 0;
-  z-index: 400;
+.halo-Sidebar {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  background: white;
-}
-.Sidebar:before {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  left: 100%;
-  bottom: 0;
-  width: 20px;
-  content: " ";
-}
-@media only screen and (min-width: 1025px) {
-  .Sidebar {
-    position: absolute;
-    left: 0;
-    top: 60px;
-  }
-}
-.Sidebar-container {
-  height: 100%;
-  width: 100%;
+  border-right: 20px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box !important;
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
   overflow: hidden;
+  -webkit-overflow-scrolling: touch;
   overflow-y: auto;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000;
+          perspective: 1000;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  will-change: transform;
+}
+.halo-Sidebar.halo-Sidebar--scroller {
+  position: fixed;
+  overflow-y: hidden;
+}
+.halo-Sidebar-content {
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+.halo-Sidebar-content.halo-Sidebar--scroller {
+  overflow: visible;
+  overflow-y: visible;
   -webkit-overflow-scrolling: touch;
 }
-.Sidebar-overlay {
+.halo-Sidebar-overlay {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   -webkit-perspective: 1000;
@@ -1863,20 +1813,74 @@ blockquote {
   bottom: 0;
   height: 100%;
   width: 100%;
-  z-index: 399;
-  overflow: hidden;
-  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 501;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  overflow: hidden;
+  pointer-events: none;
   opacity: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  will-change: opacity;
+}
+.Sidebar {
+  position: fixed;
+  width: 270px;
+  left: -270px;
+  top: 0;
+  bottom: 0;
+  z-index: 502;
+  background: #2b303b;
+}
+@media only screen and (min-width: 1025px) {
+  .Sidebar {
+    left: 0;
+  }
+}
+.Sidebar-header {
+  height: 60px;
+  line-height: 60px;
+  padding: 0 20px;
 }
 .Sidebar ul > li > a {
   display: block;
   line-height: 50px;
-  padding: 0 10px;
+  padding: 0 20px;
+}
+.Header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 20px 0 0;
+  font-size: 1rem;
+  background-color: rgba(223, 225, 232, 0.95);
+}
+.Header .Header-title {
+  display: inline-block;
+  padding: 0 20px 0 20px;
+}
+@media only screen and (min-width: 1025px) {
+  .Header {
+    left: 270px;
+  }
+}
+.Content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: 80px;
+}
+@media only screen and (min-width: 1025px) {
+  .Content {
+    left: 270px;
+  }
 }
 /* ==|== media queries ======================================================
    PLACEHOLDER Media Queries for Responsive Design.

@@ -23,12 +23,67 @@
 @import "components/nav";
 
 
-.Sidebar ul > li > a {
-    display: block;
-    line-height: 50px;
-    padding: 0 10px;
+//config
+@Header-height: 60px;
+@Nav-sidebar-width: 270px;
+
+.Sidebar {
+    position:   fixed;
+    width:      @Nav-sidebar-width;
+    left:       -@Nav-sidebar-width;
+    top:        0;
+    bottom:     0;
+    z-index:    502;
+    background: @gray0;
+    @media only screen and (min-width: 1025px) {
+        left: 0;
+    }
 }
 
+.Sidebar-header {
+    height:      60px;
+    line-height: 60px;
+    padding:     0 20px;
+}
+
+.Sidebar ul > li > a {
+    display:     block;
+    line-height: 50px;
+    padding:     0 20px;
+}
+
+.Header {
+    position:         fixed;
+    top:              0;
+    left:             0;
+    right:            0;
+    z-index:          500;
+    height:           @Header-height;
+    line-height:      @Header-height;
+    padding:          0 20px 0 0;
+    font-size:        1rem;
+    background-color: fade(@gray6, 95%);
+
+    .Header-title {
+        display: inline-block;
+        padding: 0 20px 0 20px;
+    }
+    @media only screen and (min-width: 1025px) {
+        left: @Nav-sidebar-width;
+    }
+}
+
+.Content {
+    position: absolute;
+    top:      0;
+    left:     0;
+    bottom:   0;
+    right:    0;
+    padding-top: 80px;
+    @media only screen and (min-width: 1025px) {
+        left: @Nav-sidebar-width;
+    }
+}
 
 /* ==|== media queries ======================================================
    PLACEHOLDER Media Queries for Responsive Design.

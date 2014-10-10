@@ -6,13 +6,24 @@
   <body>
     {% include header.html %}
     {% include sidebar.html %}
-    <div class="Sidebar-overlay"></div>
     <div class="Content">
         {{ content }}
     </div>
 
-    <script type="application/javascript" src="{{ "/js/utils.js" | prepend: site.baseurl}}"></script>
-    <script type="application/javascript" src="{{ "/js/nav.js" | prepend: site.baseurl}}"></script>
+    <script type="application/javascript" src="{{ "/js/polyfills.js" | prepend: site.baseurl}}"></script>
+    <script type="application/javascript" src="{{ "/js/halo-utils.js" | prepend: site.baseurl}}"></script>
+    <script type="application/javascript" src="{{ "/js/halo-sidebar.js" | prepend: site.baseurl}}"></script>
+    <script type="application/javascript" src="{{ "/js/iscroll.js" | prepend: site.baseurl}}"></script>
+    <script>
+
+        window.nav = new HaloSidebar();
+
+        var iscroll = new IScroll('.Sidebar', {
+            disableMouse: true,
+            mouseWheel: true,
+            scrollbars: true
+        });
+    </script>
   </body>
 
 </html>
