@@ -1766,17 +1766,6 @@ blockquote {
           transform: translate3d(0, 0, 0);
 }
 .halo-Sidebar {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  border-right: 20px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box !important;
-  -moz-box-sizing: content-box;
-       box-sizing: content-box;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   -webkit-perspective: 1000;
@@ -1784,10 +1773,20 @@ blockquote {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   will-change: transform;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-.halo-Sidebar.halo-Sidebar--scroller {
-  position: fixed;
-  overflow-y: hidden;
+.halo-Sidebar:before {
+  position: absolute;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 20px;
+  height: 100%;
+  content: " ";
 }
 .halo-Sidebar-content {
   overflow: hidden;
@@ -1824,6 +1823,68 @@ blockquote {
   opacity: 0;
   will-change: opacity;
 }
+.icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+.icon--primary path {
+  fill: red;
+}
+.icon--shadow {
+  -webkit-filter: drop-shadow(5px 5px 2px #000000);
+          filter: drop-shadow(5px 5px 2px #000000);
+}
+.icon--spin {
+  -webkit-animation: infinite-spinning 1s infinite;
+          animation: infinite-spinning 1s infinite;
+}
+@-webkit-keyframes infinite-spinning {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes infinite-spinning {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.icon-test {
+  overflow: hidden !important;
+}
+.icon-test:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: " ";
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.icon-test:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1001;
+  content: " ";
+  text-align: center;
+  background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjOGZhMWIzIj4KICAgIDxwYXRoIG9wYWNpdHk9Ii4yNSIgZD0iTTE2IDAgQTE2IDE2IDAgMCAwIDE2IDMyIEExNiAxNiAwIDAgMCAxNiAwIE0xNiA0IEExMiAxMiAwIDAgMSAxNiAyOCBBMTIgMTIgMCAwIDEgMTYgNCIvPgogICAgPHBhdGggZD0iTTE2IDAgQTE2IDE2IDAgMCAxIDMyIDE2IEwyOCAxNiBBMTIgMTIgMCAwIDAgMTYgNHoiPgogICAgICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBmcm9tPSIwIDE2IDE2IiB0bz0iMzYwIDE2IDE2IiBkdXI9IjAuOHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiAvPgogICAgPC9wYXRoPgo8L3N2Zz4) no-repeat center;
+  background-size: 32px 32px;
+}
 .Sidebar {
   position: fixed;
   width: 270px;
@@ -1833,20 +1894,30 @@ blockquote {
   z-index: 502;
   background: #2b303b;
 }
-@media only screen and (min-width: 1025px) {
-  .Sidebar {
-    left: 0;
-  }
-}
 .Sidebar-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 60px;
   line-height: 60px;
   padding: 0 20px;
+}
+.Sidebar-scroller {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: auto;
 }
 .Sidebar ul > li > a {
   display: block;
   line-height: 50px;
   padding: 0 20px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 .Header {
   position: fixed;
@@ -1864,22 +1935,33 @@ blockquote {
   display: inline-block;
   padding: 0 20px 0 20px;
 }
-@media only screen and (min-width: 1025px) {
-  .Header {
-    left: 270px;
-  }
-}
 .Content {
   position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  padding-top: 80px;
+  margin-top: 60px;
+  padding-top: 20px;
 }
 @media only screen and (min-width: 1025px) {
-  .Content {
+  .is-openNav .Sidebar {
+    left: 0;
+  }
+  .Sidebar {
+    left: -270px;
+  }
+  .is-openNav .Content {
     left: 270px;
+  }
+  .Content {
+    left: 0;
+  }
+  .is-openNav .Header {
+    left: 270px;
+  }
+  .Header {
+    left: 0;
   }
 }
 /* ==|== media queries ======================================================

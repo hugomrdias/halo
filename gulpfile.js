@@ -1,5 +1,5 @@
 'use strict';
-var gulp = require('gulp'),
+var gulp         = require('gulp'),
     bsync        = require('browser-sync'),
     reload       = bsync.reload,
     less         = require('gulp-less'),
@@ -9,6 +9,8 @@ var gulp = require('gulp'),
     filter       = require('gulp-filter'),
     autoprefixer = require('gulp-autoprefixer'),
     util         = require('gulp-util'),
+    svgstore     = require('gulp-svgstore'),
+    svgmin       = require('gulp-svgmin'),
     sequence     = require('run-sequence'),
     cp           = require('child_process');
 
@@ -16,13 +18,13 @@ var messages = {
     jekyllBuild: '<span style="color: grey">Running:</span> <code>$ jekyll build</code>'
 };
 
-var handleError = function(e) {
+var handleError = function (e) {
 
     var args = Array.prototype.slice.call(arguments);
 
     // Send error to notification center with gulp-notify
     notify.onError({
-        title: 'Compile Error',
+        title  : 'Compile Error',
         message: '<%= error.message %>'
     }).apply(this, args);
 
@@ -32,12 +34,10 @@ var handleError = function(e) {
     this.emit('end');
 };
 
-
-
 /**
  * Build the Jekyll Site
  */
-gulp.task('jekyll', function(done) {
+gulp.task('jekyll', function (done) {
     bsync.notify(messages.jekyllBuild);
     return cp.spawn('jekyll', ["build"], {
         stdio: 'inherit'
@@ -49,20 +49,20 @@ gulp.task('jekyll', function(done) {
 /**
  * Start Browser Sync
  */
-gulp.task('serve', function() {
+gulp.task('serve', function () {
     bsync({
         server: {
             baseDir: '_site'
         },
-        port: 3000,
-        open: false
+        port  : 3000,
+        open  : false
     });
 });
 
 /**
  * Build Less
  */
-gulp.task('less', function() {
+gulp.task('less', function () {
     bsync.notify('Compiling Less files... Please Wait');
     return gulp.src('less/style.less')
         .pipe(sourcemaps.init())
@@ -71,7 +71,7 @@ gulp.task('less', function() {
         .pipe(autoprefixer())
         .pipe(sourcemaps.write('.', {
             includeContent: false,
-            sourceRoot: '/css'
+            sourceRoot    : '/css'
         }))
         .pipe(gulp.dest('_site/css'))
         .pipe(gulp.dest('css'))
@@ -84,15 +84,37 @@ gulp.task('less', function() {
         }));
 });
 
-gulp.task('watch', function() {
-    sequence('jekyll', 'less');
+gulp.task('svg', function () {
+    var stream = gulp.src('img/svg/*.svg')
+        .pipe(svgmin())
+        .pipe(svgstore({
+            fileName    : 'icons.svg'
+        }))
+        .pipe(gulp.dest('img/'))
+
+    stream.on('end', function () {
+        util.log('end')
+        sequence('jekyll')
+    });
+    return stream;
+});
+
+gulp.task('watch', function () {
+    sequence('jekyll', 'less', 'svg');
+
+
+    var svg = gulp.watch('img/svg/*.svg', ['svg']);
+    svg.on('change', function (event) {
+        util.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+    });
+
     var less = gulp.watch('less/**/*.less', ['less']);
-    less.on('change', function(event) {
+    less.on('change', function (event) {
         util.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 
     var jekyll = gulp.watch(['**/*.{html,xml,yml,md,js}', '!_site/**'], ['jekyll']);
-    jekyll.on('change', function(event) {
+    jekyll.on('change', function (event) {
         util.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
     });
 
@@ -102,3 +124,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['serve', 'watch']);
+

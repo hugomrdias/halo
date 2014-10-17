@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="loading-balls" viewBox="0 0 32 32">
+    <path xmlns="http://www.w3.org/2000/svg" transform="translate(-8)" d="M4 12a4 4 0 0 0 0 8 4 4 0 0 0 0-8">
+      <animateTransform attributeName="transform" values="-8 0; 2 0; 2 0;" dur="0.8s" repeatCount="indefinite" begin="0" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+    </path>
+    <path xmlns="http://www.w3.org/2000/svg" transform="translate(2)" d="M4 12a4 4 0 0 0 0 8 4 4 0 0 0 0-8">
+      <animateTransform attributeName="transform" values="2 0; 12 0; 12 0;" dur="0.8s" repeatCount="indefinite" begin="0" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+    </path>
+    <path xmlns="http://www.w3.org/2000/svg" transform="translate(12)" d="M4 12a4 4 0 0 0 0 8 4 4 0 0 0 0-8">
+      <animateTransform attributeName="transform" values="12 0; 22 0; 22 0;" dur="0.8s" repeatCount="indefinite" begin="0" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+    </path>
+    <path xmlns="http://www.w3.org/2000/svg" transform="translate(24)" d="M4 12a4 4 0 0 0 0 8 4 4 0 0 0 0-8">
+      <animateTransform attributeName="transform" values="22 0; 32 0; 32 0;" dur="0.8s" repeatCount="indefinite" begin="0" keySplines="0.2 0.2 0.4 0.8;0.2 0.6 0.4 0.8" calcMode="spline"/>
+    </path>
+  </symbol>
+  <symbol id="loading-spin" viewBox="0 0 32 32">
+    <path opacity=".25" d="M16 0a16 16 0 0 0 0 32 16 16 0 0 0 0-32m0 4a12 12 0 0 1 0 24 12 12 0 0 1 0-24"/>
+    <path xmlns="http://www.w3.org/2000/svg" d="M16 0a16 16 0 0 1 16 16h-4A12 12 0 0 0 16 4z">
+      <animateTransform attributeName="transform" type="rotate" from="0 16 16" to="360 16 16" dur="0.8s" repeatCount="indefinite"/>
+    </path>
+  </symbol>
+  <symbol id="menu" viewBox="0 0 32 32">
+    <path d="M2 6h28v6H2zm0 8h28v6H2zm0 8h28v6H2z"/>
+  </symbol>
+  <symbol id="minus" viewBox="0 0 32 32">
+    <path d="M0 13v6c0 .552.448 1 1 1h30c.552 0 1-.448 1-1v-6c0-.552-.448-1-1-1H1c-.552 0-1 .448-1 1z"/>
+  </symbol>
+  <symbol id="plus" viewBox="0 0 32 32">
+    <path d="M31 12H20V1c0-.552-.448-1-1-1h-6c-.552 0-1 .448-1 1v11H1c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1h11v11c0 .552.448 1 1 1h6c.552 0 1-.448 1-1V20h11c.552 0 1-.448 1-1v-6c0-.552-.448-1-1-1z"/>
+  </symbol>
+  <symbol id="table" viewBox="0 0 32 32">
+    <path d="M0 6v22h32V6H0zm12 14v-4h8v4h-8zm8 2v4h-8v-4h8zm0-12v4h-8v-4h8zm-10 0v4H2v-4h8zm-8 6h8v4H2v-4zm20 0h8v4h-8v-4zm0-2v-4h8v4h-8zM2 22h8v4H2v-4zm20 4v-4h8v4h-8z"/>
+  </symbol>
+</svg>

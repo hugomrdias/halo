@@ -17,7 +17,7 @@ url:              http://hugomrdias.github.io/halo
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
-baseurl:          '/halo'
+baseurl:          ''
 
 # Pagination
 paginate:         5

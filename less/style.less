@@ -4,7 +4,7 @@
 @import (inline) "@{npm-path}/normalize.css/normalize.css";
 
 // SUIT CSS utilities
-// suit css offset util not include for now
+// suit css offset util not included for now
 @import (inline) "@{suit-utils}/suitcss-utils-align/lib/align.css";
 @import (inline) "@{suit-utils}/suitcss-utils-display/lib/display.css";
 @import (inline) "@{suit-utils}/suitcss-utils-layout/lib/layout.css";
@@ -21,7 +21,7 @@
 @import "components/syntax-dark";
 @import "components/grid";
 @import "components/nav";
-
+@import "components/icons";
 
 //config
 @Header-height: 60px;
@@ -35,21 +35,34 @@
     bottom:     0;
     z-index:    502;
     background: @gray0;
-    @media only screen and (min-width: 1025px) {
-        left: 0;
-    }
 }
 
 .Sidebar-header {
+    position:    absolute;
+    top:         0;
+    left:        0;
+    right:       0;
     height:      60px;
     line-height: 60px;
     padding:     0 20px;
 }
 
+.Sidebar-scroller {
+    position:   absolute;
+    top:        60px;
+    left:       0;
+    right:      0;
+    bottom:     0;
+    overflow:   hidden;
+    overflow-y: auto;
+}
+
 .Sidebar ul > li > a {
-    display:     block;
-    line-height: 50px;
-    padding:     0 20px;
+    display:        block;
+    line-height:    50px;
+    padding:        0 20px;
+    text-transform: uppercase;
+    font-size:      0.9rem;
 }
 
 .Header {
@@ -68,20 +81,41 @@
         display: inline-block;
         padding: 0 20px 0 20px;
     }
-    @media only screen and (min-width: 1025px) {
-        left: @Nav-sidebar-width;
-    }
 }
 
 .Content {
-    position: absolute;
-    top:      0;
-    left:     0;
-    bottom:   0;
-    right:    0;
-    padding-top: 80px;
-    @media only screen and (min-width: 1025px) {
+    position:    absolute;
+    top:         0;
+    left:        0;
+    bottom:      0;
+    right:       0;
+    margin-top:  60px;
+    padding-top: 20px;
+}
+
+@media only screen and (min-width: 1025px) {
+    .is-openNav .Sidebar {
+        left: 0;
+    }
+
+    .Sidebar {
+        left: -@Nav-sidebar-width;
+    }
+
+    .is-openNav .Content {
         left: @Nav-sidebar-width;
+    }
+
+    .Content {
+        left: 0;
+    }
+
+    .is-openNav .Header {
+        left: @Nav-sidebar-width;
+    }
+
+    .Header {
+        left: 0;
     }
 }
 

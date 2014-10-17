@@ -9,23 +9,21 @@
 }
 
 .halo-Sidebar {
-    user-select:                none;
-
-    border-right:               20px solid rgba(0, 0, 0, 0);
-    background-clip:            padding-box !important;
-    box-sizing:                 content-box;
-
-    overflow:                   hidden;
-    -webkit-overflow-scrolling: touch;
-    overflow-y:                 auto;
-
     .u-enableGPU;
     will-change:                transform;
-}
 
-.halo-Sidebar.halo-Sidebar--scroller {
-    position:   fixed;
-    overflow-y: hidden;
+    user-select:                none;
+
+    &:before {
+        position: absolute;
+        right:    20px;
+        top:      0;
+        bottom:   0;
+        left:     100%;
+        width:    20px;
+        height:   100%;
+        content:  " ";
+    }
 }
 
 .halo-Sidebar-content {

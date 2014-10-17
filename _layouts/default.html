@@ -18,10 +18,14 @@
 
         window.nav = new HaloSidebar();
 
-        var iscroll = new IScroll('.Sidebar', {
-            disableMouse: true,
-            mouseWheel: true,
-            scrollbars: true
+//        var iscroll = new IScroll('.Sidebar-scroller', {
+//            disableMouse: true,
+//            mouseWheel: true,
+//            scrollbars: true
+//        });
+
+        document.querySelector('.Header-title').addEventListener('click', function(e){
+            document.documentElement.classList.toggle('is-openNav');
         });
     </script>
   </body>
