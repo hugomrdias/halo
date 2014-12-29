@@ -1,0 +1,67 @@
+
+.Select {
+    position: relative;
+    display:  inline-block;
+}
+
+.Select select {
+    display:            inline-block;
+    //    width:              100%;
+    //    margin:             0;
+    padding-right:      32px + 12;
+    cursor:             pointer;
+    outline:            0;
+    border-radius:      0;
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+}
+
+.Select select::-ms-expand {
+    display: none;
+}
+
+.Select:before {
+    content:        '';
+    border-left:    1px solid black;
+    top:            2px;
+    right:          1px;
+    bottom:         1px;
+    width:          32px;
+    background:     white;
+    position:       absolute;
+    pointer-events: none;
+    display:        block;
+}
+
+/* Dropdown arrow */
+.Select--caret:after {
+    position:       absolute;
+    top:            50%;
+    right:          12px;
+    display:        inline-block;
+    content:        "";
+    width:          0;
+    height:         0;
+    margin-top:     -.15rem;
+    pointer-events: none;
+    border-top:     .35rem solid #aaa;
+    border-right:   .35rem solid transparent;
+    border-bottom:  .35rem solid transparent;
+    border-left:    .35rem solid transparent;
+}
+
+.Select--arrow:after {
+    content:        '<>';
+    font:           12px 'RobotoDraft', Arial, sans-serif, monospace;
+    font-weight:    300;
+    color:          #aaa;
+    transform:      rotate(90deg);
+    position:       absolute;
+    top:            2px;
+    right:          10px;
+    bottom:         1px;
+    line-height:    32px;
+    pointer-events: none;
+}
+

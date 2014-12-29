@@ -12,6 +12,8 @@
 @base-selection-color: fade(@brand-primary, 50%);
 @base-radius: @radius;
 
+@base-input-height: 34px;
+
 /**
  * A thin layer on top of normalize.css that provides a starting point more
  * suitable for web applications. Removes the default spacing and border for
@@ -97,7 +99,8 @@ ul {
 }
 
 input[type="search"] {
-    box-sizing: border-box;
+    box-sizing:         border-box;
+    -webkit-appearance: none;
 }
 
 // Holy Grail
@@ -179,3 +182,126 @@ pre {
 
 blockquote { font-style: italic }
 
+// Forms
+// ------------------------------
+fieldset {
+    max-width: 100%;
+    margin:    0 0 @base-line-height;
+    border:    0;
+    padding:   0;
+}
+
+legend {
+    display:       inline-block;
+    width:         100%;
+    padding:       0 0 5px 0;
+    margin-bottom: @base-line-height;
+    line-height:   @base-line-height;
+    font-weight:   bold;
+    border:        0;
+    border-bottom: 1px solid @gray6;
+    word-wrap:     break-word !important;
+    // Small
+    small {
+        font-size:   75%;
+        color:       @gray4;
+        line-height: 1;
+        font-weight: normal;
+    }
+}
+
+// Make multiple select elements height not fixed
+select[multiple],
+select[size] {
+    height: auto;
+}
+
+input[type="number"] {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        height: auto;
+    }
+}
+
+label {
+    display:        inline-block;
+//    width:          100%;
+    max-width:      100%;
+    height:         auto;
+    line-height:    @base-input-height;
+    cursor:         pointer;
+    vertical-align: top;
+    @media only screen and (min-width: 481px) {
+        width: auto;
+    }
+}
+
+textarea,
+select,
+input,
+output,
+button {
+    width:            auto;
+    max-width:        100%;
+    display:          inline-block;
+    padding:          6px 12px;
+    line-height:      @base-line-height;
+    height:           @base-input-height;
+    background-color: white; // normalize select background color we start with white
+    border:           1px solid fade(@base-color, 30%);
+    transition:       border linear .2s;
+    vertical-align:   middle;
+
+    &[disabled],
+    fieldset[disabled] & {
+        pointer-events: none;
+        opacity:        .65;
+    }
+
+    &[readonly] {
+        pointer-events: none;
+    }
+}
+
+select {
+    cursor: pointer;
+    outline: 0;
+}
+
+select:focus:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+input[type="range"] {
+    width:     100%;
+    max-width: 100%;
+    @media only screen and (min-width: 481px) {
+        width: auto;
+    }
+}
+
+textarea {
+    display: block;
+    height:  auto; // reset to auto cause textarea has rows
+    resize:  vertical;
+}
+
+input[type="file"] {
+    max-width: 100%;
+    width:     100%;
+    font-size: 14px;
+}
+
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"],
+input[type="color"] {
+    padding: 0;
+    border:  0;
+    height:  @base-input-height;
+}
+
+input[type="color"] { min-width: @base-input-height; }
+
+input[type="image"] { padding: 0 }

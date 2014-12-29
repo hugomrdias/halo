@@ -990,6 +990,7 @@ ul {
 input[type="search"] {
   -moz-box-sizing: border-box;
        box-sizing: border-box;
+  -webkit-appearance: none;
 }
 *,
 *:before,
@@ -1058,6 +1059,128 @@ pre code {
 blockquote {
   font-style: italic;
 }
+fieldset {
+  max-width: 100%;
+  margin: 0 0 20px;
+  border: 0;
+  padding: 0;
+}
+legend {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0 5px 0;
+  margin-bottom: 20px;
+  line-height: 20px;
+  font-weight: bold;
+  border: 0;
+  border-bottom: 1px solid #dfe1e8;
+  word-wrap: break-word !important;
+}
+legend small {
+  font-size: 75%;
+  color: #a7adba;
+  line-height: 1;
+  font-weight: normal;
+}
+select[multiple],
+select[size] {
+  height: auto;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  height: auto;
+}
+label {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  line-height: 34px;
+  cursor: pointer;
+  vertical-align: top;
+}
+@media only screen and (min-width: 481px) {
+  label {
+    width: auto;
+  }
+}
+textarea,
+select,
+input,
+output,
+button {
+  width: auto;
+  max-width: 100%;
+  display: inline-block;
+  padding: 6px 12px;
+  line-height: 20px;
+  height: 34px;
+  background-color: white;
+  border: 1px solid rgba(79, 91, 102, 0.3);
+  -webkit-transition: border linear .2s;
+          transition: border linear .2s;
+  vertical-align: middle;
+}
+textarea[disabled],
+select[disabled],
+input[disabled],
+output[disabled],
+button[disabled],
+fieldset[disabled] textarea,
+fieldset[disabled] select,
+fieldset[disabled] input,
+fieldset[disabled] output,
+fieldset[disabled] button {
+  pointer-events: none;
+  opacity: .65;
+}
+textarea[readonly],
+select[readonly],
+input[readonly],
+output[readonly],
+button[readonly] {
+  pointer-events: none;
+}
+select {
+  cursor: pointer;
+  outline: 0;
+}
+select:focus:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+input[type="range"] {
+  width: 100%;
+  max-width: 100%;
+}
+@media only screen and (min-width: 481px) {
+  input[type="range"] {
+    width: auto;
+  }
+}
+textarea {
+  display: block;
+  height: auto;
+  resize: vertical;
+}
+input[type="file"] {
+  max-width: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"],
+input[type="color"] {
+  padding: 0;
+  border: 0;
+  height: 34px;
+}
+input[type="color"] {
+  min-width: 34px;
+}
+input[type="image"] {
+  padding: 0;
+}
 /* Components */
 /*! suit-test v0.1.0 | MIT License | github.com/suitcss */
 .Test {
@@ -1108,6 +1231,8 @@ blockquote {
 }
 .Test-run {
   margin-bottom: 20px;
+  background-color: #ffffff;
+  padding: 20px;
 }
 .Test-code {
   margin: 0 0 40px 0;
@@ -1884,6 +2009,66 @@ blockquote {
   text-align: center;
   background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjOGZhMWIzIj4KICAgIDxwYXRoIG9wYWNpdHk9Ii4yNSIgZD0iTTE2IDAgQTE2IDE2IDAgMCAwIDE2IDMyIEExNiAxNiAwIDAgMCAxNiAwIE0xNiA0IEExMiAxMiAwIDAgMSAxNiAyOCBBMTIgMTIgMCAwIDEgMTYgNCIvPgogICAgPHBhdGggZD0iTTE2IDAgQTE2IDE2IDAgMCAxIDMyIDE2IEwyOCAxNiBBMTIgMTIgMCAwIDAgMTYgNHoiPgogICAgICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0icm90YXRlIiBmcm9tPSIwIDE2IDE2IiB0bz0iMzYwIDE2IDE2IiBkdXI9IjAuOHMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiAvPgogICAgPC9wYXRoPgo8L3N2Zz4) no-repeat center;
   background-size: 32px 32px;
+}
+.Select {
+  position: relative;
+  display: inline-block;
+}
+.Select select {
+  display: inline-block;
+  padding-right: 44px;
+  cursor: pointer;
+  outline: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.Select select::-ms-expand {
+  display: none;
+}
+.Select:before {
+  content: '';
+  border-left: 1px solid black;
+  top: 2px;
+  right: 1px;
+  bottom: 1px;
+  width: 32px;
+  background: white;
+  position: absolute;
+  pointer-events: none;
+  display: block;
+}
+/* Dropdown arrow */
+.Select--caret:after {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  display: inline-block;
+  content: "";
+  width: 0;
+  height: 0;
+  margin-top: -0.15rem;
+  pointer-events: none;
+  border-top: .35rem solid #aaa;
+  border-right: .35rem solid transparent;
+  border-bottom: .35rem solid transparent;
+  border-left: .35rem solid transparent;
+}
+.Select--arrow:after {
+  content: '<>';
+  font: 12px 'RobotoDraft', Arial, sans-serif, monospace;
+  font-weight: 300;
+  color: #aaa;
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  bottom: 1px;
+  line-height: 32px;
+  pointer-events: none;
 }
 .Sidebar {
   position: fixed;
